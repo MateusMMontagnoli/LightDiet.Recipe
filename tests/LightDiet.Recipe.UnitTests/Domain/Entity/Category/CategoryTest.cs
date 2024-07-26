@@ -89,12 +89,12 @@ public class CategoryTest
             .WithMessage("Description should not be null");
     }
 
+
+    
+
     [Theory(DisplayName = nameof(InstantiateErrorWhenNameIsLessThan3Characters))]
     [Trait("Domain", "Category - Aggregates")]
-    [InlineData("ac")]
-    [InlineData("a")]
-    [InlineData("1")]
-    [InlineData("12")]
+    [MemberData(nameof(GetNamesWithLessThan3Characters), parameters: 10)]
     public void InstantiateErrorWhenNameIsLessThan3Characters(string invalidName)
     {
         var validCategory = _categoryTestFixture.GetValidCategory();
@@ -105,6 +105,20 @@ public class CategoryTest
         var exception = Assert.Throws<EntityValidationException>(action);
 
         Assert.Equal("Name should be at least 3 characters long", exception.Message);
+    }
+
+    public static IEnumerable<object[]> GetNamesWithLessThan3Characters(int numberOfNames = 6)
+    {
+        var fixture = new CategoryTestFixture();
+        
+        for (int i = 0; i < numberOfNames; i++)
+        {
+            var isOdd = i % 2 == 1;
+            yield return new object[] 
+            { 
+                fixture.GetValidCategoryName()[..(isOdd ? 1 : 2 )]
+            };
+        }
     }
 
     [Fact(DisplayName = nameof(InstantiateErrorWhenNameIsGreaterThan50Characters))]
@@ -122,6 +136,7 @@ public class CategoryTest
             .Throw<EntityValidationException>()
             .WithMessage("Name should be less or equal than 50 characters long");
     }
+
 
     [Fact(DisplayName = nameof(InstantiateErrorWhenDescriptionIsGreaterThan150Characters))]
     [Trait("Domain", "Category - Aggregates")]
