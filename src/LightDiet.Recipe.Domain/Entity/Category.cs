@@ -1,5 +1,6 @@
 ﻿using LightDiet.Recipe.Domain.Exceptions;
 using LightDiet.Recipe.Domain.SeedWork;
+using LightDiet.Recipe.Domain.Validation;
 
 namespace LightDiet.Recipe.Domain.Entity;
 
@@ -44,29 +45,10 @@ public class Category : AggregateRoot
 
     private void Validate()
     {
-        if (string.IsNullOrWhiteSpace(Name))
-        {
-            throw new EntityValidationException($"{nameof(Name)} should not be empty or null");
-        }
-
-        if (Name.Length < 3)
-        {
-            throw new EntityValidationException($"{nameof(Name)} should be at least 3 characters long");
-        }
-
-        if (Name.Length > 50)
-        {
-            throw new EntityValidationException($"{nameof(Name)} should be less or equal than 50 characters long");
-        }
-
-        if (Description == null)
-        {
-            throw new EntityValidationException($"{nameof(Description)} should not be null");
-        }
-
-        if (Description.Length > 150)
-        {
-            throw new EntityValidationException($"{nameof(Description)} should be less or equal than 150 characters long");
-        }
+        DomainValidation.NotNullOrEmpty(Name, nameof(Name));
+        DomainValidation.MinLength(Name, nameof(Name), 3);
+        DomainValidation.MaxLength(Name, nameof(Name), 50);
+        DomainValidation.NotNull(Description, nameof(Description));
+        DomainValidation.MaxLength(Description, nameof(Description), 150);
     }
 }
