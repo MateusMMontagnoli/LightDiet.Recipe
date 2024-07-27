@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.UnitTests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.Domain", "src\LightDiet.Recipe.Domain\LightDiet.Recipe.Domain.csproj", "{F6C1ADA5-3685-41BA-8736-935263433EBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.Application", "src\LightDiet.Recipe.Application\LightDiet.Recipe.Application.csproj", "{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{F6C1ADA5-3685-41BA-8736-935263433EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C1ADA5-3685-41BA-8736-935263433EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6C1ADA5-3685-41BA-8736-935263433EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2522B833-764B-4D89-8692-3A52018D6BF5} = {7B94F3F7-A807-4DD6-B80B-23C0994B6960}
 		{F6C1ADA5-3685-41BA-8736-935263433EBA} = {26789FFB-53E7-4C2B-AD55-0D6F4607B72B}
+		{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8} = {26789FFB-53E7-4C2B-AD55-0D6F4607B72B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {698B0E53-FABF-4877-AC43-009861C7E969}
