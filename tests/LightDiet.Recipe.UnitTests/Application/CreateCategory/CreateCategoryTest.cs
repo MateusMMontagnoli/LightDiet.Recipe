@@ -10,12 +10,12 @@ using UseCases = LightDiet.Recipe.Application.UseCases.Category.CreateCategory;
 
 namespace LightDiet.Recipe.UnitTests.Application.CreateCategory;
 
-[Collection(nameof(CreateCategoryTesteFixture))]
+[Collection(nameof(CreateCategoryTestFixture))]
 public class CreateCategoryTest
 {
-    private readonly CreateCategoryTesteFixture _fixture;
+    private readonly CreateCategoryTestFixture _fixture;
 
-    public CreateCategoryTest(CreateCategoryTesteFixture fixture)
+    public CreateCategoryTest(CreateCategoryTestFixture fixture)
     {
         _fixture = fixture;
     }
@@ -59,7 +59,11 @@ public class CreateCategoryTest
 
     [Theory(DisplayName = nameof(ThrowWhenCantInstantiateCategory))]
     [Trait("Application", "CreateCategory - Use Cases")]
-    [MemberData(nameof(GetInvalidCategories))]
+    [MemberData(
+        nameof(CreateCategoryTestDataGenerator.GetInvalidCategories),
+        parameters: 24,
+        MemberType = typeof(CreateCategoryTestDataGenerator)
+    )]
     public async void ThrowWhenCantInstantiateCategory(
         CreateCategoryInput input,
         string exceptionMessage
@@ -78,106 +82,6 @@ public class CreateCategoryTest
             .ThrowAsync<EntityValidationException>()
             .WithMessage(exceptionMessage);
 
-    }
-
-    public static IEnumerable<object[]> GetInvalidCategories()
-    {
-        var fixture = new CreateCategoryTesteFixture();
-
-        var invalidInputList = new List<object[]>();
-
-        var nameMinLengthException = "Name should be at least 3 characters long";
-
-        var nameMaxLengthException = "Name should be less or equal than 50 characters long";
-
-        var nameEmptyException = "Name should not be empty or null";
-
-        var nameNullException = "Name should not be empty or null";
-
-        var descriptionMaxLengthException = "Description should be less or equal than 150 characters long";
-
-        var descriptionNullException = "Description should not be null";
-
-        var invalidInputByNameMinLength = fixture.GetValidInput();
-
-        invalidInputByNameMinLength.Name = invalidInputByNameMinLength.Name.Substring(0, 2);
-
-        invalidInputList.Add(new object[]
-        {
-                invalidInputByNameMinLength,
-                nameMinLengthException
-        });
-
-        var invalidInputByNameMaxLength = fixture.GetValidInput();
-
-        var invalidName = string.Empty;
-
-        while (invalidName.Length <= 50)
-        {
-            var name = fixture.Faker.Commerce.ProductName();
-
-            invalidName += $" {name}";
-        }
-
-        invalidInputByNameMaxLength.Name = invalidName;
-
-        invalidInputList.Add(new object[]
-        {
-                invalidInputByNameMaxLength,
-                nameMaxLengthException
-        });
-
-        var invalidInputByNameEmpty = fixture.GetValidInput();
-
-        invalidInputByNameEmpty.Name = string.Empty;
-
-        invalidInputList.Add(new object[]
-        {
-                invalidInputByNameEmpty,
-                nameEmptyException
-        });
-
-        var invalidInputByNameNullity = fixture.GetValidInput();
-
-        invalidInputByNameNullity.Name = null!;
-
-        invalidInputList.Add(new object[]
-        {
-                invalidInputByNameNullity,
-                nameNullException
-        });
-
-        var invalidInputByDescriptionMaxLength = fixture.GetValidInput();
-
-        var invalidDescription = string.Empty;
-
-        while (invalidDescription.Length <= 150)
-        {
-            var description = fixture.Faker.Commerce.ProductDescription();
-
-            invalidDescription += $" {description}";
-        }
-
-        invalidInputByDescriptionMaxLength.Description = invalidDescription;
-
-        invalidInputList.Add(new object[]
-        {
-            invalidInputByDescriptionMaxLength,
-            descriptionMaxLengthException
-        });
-
-        var invalidInputByDescriptionNullity = fixture.GetValidInput();
-
-        invalidInputByDescriptionNullity.Description = null!;
-
-        invalidInputList.Add(new object[]
-        {
-            invalidInputByDescriptionNullity,
-            descriptionNullException
-        });
-
-
-        return invalidInputList;
     }
 
     [Fact(DisplayName = nameof(CreateCategoryOnlyName))]
