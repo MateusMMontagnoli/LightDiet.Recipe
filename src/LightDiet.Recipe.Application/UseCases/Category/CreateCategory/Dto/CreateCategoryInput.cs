@@ -1,6 +1,10 @@
-﻿namespace LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+﻿using LightDiet.Recipe.Application.UseCases.Category.Common.Dto;
+using MediatR;
+using System.Net;
 
-public record CreateCategoryInput
+namespace LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+
+public record CreateCategoryInput : IRequest<CategoryModelOutput>
 {
     public string Name { get; set; }
 

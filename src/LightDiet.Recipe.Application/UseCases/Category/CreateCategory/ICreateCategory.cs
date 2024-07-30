@@ -1,7 +1,10 @@
-﻿using LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+﻿using LightDiet.Recipe.Application.UseCases.Category.Common.Dto;
+using LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+using MediatR;
 
 namespace LightDiet.Recipe.Application.UseCases.Category.CreateCategory;
-public interface ICreateCategory
+public interface ICreateCategory : 
+    IRequestHandler<CreateCategoryInput, CategoryModelOutput>
 {
-    public Task<CreateCategoryOutput> Handle(CreateCategoryInput input, CancellationToken cancellationToken);
+
 }

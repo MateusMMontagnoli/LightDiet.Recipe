@@ -1,11 +1,8 @@
 ﻿using FluentAssertions;
-using LightDiet.Recipe.Application.Interfaces;
 using LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
 using LightDiet.Recipe.Domain.Entity;
 using LightDiet.Recipe.Domain.Exceptions;
-using LightDiet.Recipe.Domain.Repository.Interfaces;
 using Moq;
-using System.Security.Cryptography;
 using UseCases = LightDiet.Recipe.Application.UseCases.Category.CreateCategory;
 
 namespace LightDiet.Recipe.UnitTests.Application.CreateCategory;

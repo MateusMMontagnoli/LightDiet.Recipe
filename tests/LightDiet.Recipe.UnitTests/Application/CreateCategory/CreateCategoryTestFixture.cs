@@ -132,6 +132,6 @@ public class CreateCategoryTestFixture : BaseFixture
 }
 
 [CollectionDefinition(nameof(CreateCategoryTestFixture))]
-public class CreateCategoryTesteFixtureCollection
+public class CreateCategoryTestFixtureCollection
     : ICollectionFixture<CreateCategoryTestFixture>
 { }

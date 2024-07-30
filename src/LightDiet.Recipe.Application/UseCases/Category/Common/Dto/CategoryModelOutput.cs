@@ -1,8 +1,8 @@
 ﻿using DomainEntity = LightDiet.Recipe.Domain.Entity;
 
-namespace LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+namespace LightDiet.Recipe.Application.UseCases.Category.Common.Dto;
 
-public record CreateCategoryOutput
+public record CategoryModelOutput
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -10,7 +10,7 @@ public record CreateCategoryOutput
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public CreateCategoryOutput(
+    public CategoryModelOutput(
         Guid id,
         string name,
         string description,
@@ -25,8 +25,8 @@ public record CreateCategoryOutput
         CreatedAt = createdAt;
     }
 
-    public static CreateCategoryOutput FromCategory(DomainEntity.Category category) 
-        => new CreateCategoryOutput(
+    public static CategoryModelOutput FromCategory(DomainEntity.Category category)
+        => new CategoryModelOutput(
             category.Id,
             category.Name,
             category.Description,
