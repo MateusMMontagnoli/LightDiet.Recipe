@@ -1,6 +1,6 @@
 ﻿namespace LightDiet.Recipe.Domain.SeedWork;
 
-public interface IGenericRepository<Taggregate> : IRepository
+public interface IGenericRepository<Taggregate> : IRepository where Taggregate : AggregateRoot
 {
     public Task Insert(Taggregate aggregate, CancellationToken cancellationToken);
 
