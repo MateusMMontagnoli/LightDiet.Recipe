@@ -26,15 +26,18 @@ public class UpdateCategory : IRequestHandler<UpdateCategoryInput, CategoryModel
 
         category.Update(request.Name, request.Description);
 
-        if (request.IsActive != category.IsActive)
+        if (request.IsActive != null)
         {
-            if (request.IsActive)
+            if (request.IsActive != category.IsActive)
             {
-                category.Activate();
-            }
-            else
-            {
-                category.Deactivate();
+                if ((bool)request.IsActive!)
+                {
+                    category.Activate();
+                }
+                else
+                {
+                    category.Deactivate();
+                }
             }
         }
 
