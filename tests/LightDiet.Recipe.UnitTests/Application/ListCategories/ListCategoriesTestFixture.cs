@@ -72,6 +72,7 @@ public class ListCategoriesTestFixture
 
 }
 
+[CollectionDefinition(nameof(ListCategoriesTestFixture))]
 public class ListCategoriesTestFixtureCollecion
     : ICollectionFixture<ListCategoriesTestFixture>
 {
