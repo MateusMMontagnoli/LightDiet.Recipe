@@ -1,4 +1,4 @@
-﻿namespace LightDiet.Recipe.UnitTests.Application.CreateCategory;
+﻿namespace LightDiet.Recipe.UnitTests.Application.Category.CreateCategory;
 
 public class CreateCategoryTestDataGenerator
 {

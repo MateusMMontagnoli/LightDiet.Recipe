@@ -5,7 +5,7 @@ using Moq;
 using LightDiet.Recipe.Application.Exceptions;
 using FluentAssertions;
 
-namespace LightDiet.Recipe.UnitTests.Application.DeleteCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.DeleteCategory;
 
 [Collection(nameof(DeleteCategoryTestFixture))]
 public class DeleteCategoryTest
@@ -69,7 +69,7 @@ public class DeleteCategoryTest
             unitOfWorkMock.Object
         );
 
-        var task = async () 
+        var task = async ()
             => await useCase.Handle(input, CancellationToken.None);
 
         await task.Should()

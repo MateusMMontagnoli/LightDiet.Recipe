@@ -3,7 +3,7 @@ using Moq;
 using UseCases = LightDiet.Recipe.Application.UseCases.Category.GetCategory;
 using LightDiet.Recipe.Application.Exceptions;
 
-namespace LightDiet.Recipe.UnitTests.Application.GetCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.GetCategory;
 
 [Collection(nameof(GetCategoryTestFixture))]
 public class GetCategoryTest
@@ -12,7 +12,7 @@ public class GetCategoryTest
 
     public GetCategoryTest(GetCategoryTestFixture fixture)
     {
-        _fixture = fixture; 
+        _fixture = fixture;
     }
 
     [Fact(DisplayName = nameof(GetCategory))]
@@ -23,9 +23,9 @@ public class GetCategoryTest
         var repositoryMock = _fixture.GetRepositoryMock();
         var exampleCategory = _fixture.GetValidCategory();
 
-        repositoryMock.Setup(x => 
+        repositoryMock.Setup(x =>
             x.Get(
-                It.IsAny<Guid>(), 
+                It.IsAny<Guid>(),
                 It.IsAny<CancellationToken>()
         )).ReturnsAsync(exampleCategory);
 

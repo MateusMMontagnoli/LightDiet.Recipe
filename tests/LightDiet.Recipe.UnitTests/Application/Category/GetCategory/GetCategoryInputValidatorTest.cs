@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using LightDiet.Recipe.Application.UseCases.Category.GetCategory.Dto;
 
-namespace LightDiet.Recipe.UnitTests.Application.GetCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.GetCategory;
 
 [Collection(nameof(GetCategoryTestFixture))]
 public class GetCategoryInputValidatorTest
@@ -13,7 +13,7 @@ public class GetCategoryInputValidatorTest
         _fixture = fixture;
     }
 
-    [Fact(DisplayName = nameof(ValidationOk) )]
+    [Fact(DisplayName = nameof(ValidationOk))]
     [Trait("Application", "GetCategoryInputValidation - Use Cases")]
     public void ValidationOk()
     {

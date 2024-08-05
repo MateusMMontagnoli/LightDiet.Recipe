@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using LightDiet.Recipe.Application.UseCases.Category.UpdateCategory.Dto;
 
-namespace LightDiet.Recipe.UnitTests.Application.UpdateCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.UpdateCategory;
 
 [Collection(nameof(UpdateCategoryTestFixture))]
 public class UpdateCategoryInputValidatorTest

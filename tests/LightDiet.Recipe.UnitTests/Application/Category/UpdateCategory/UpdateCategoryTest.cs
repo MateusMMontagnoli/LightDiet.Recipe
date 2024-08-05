@@ -2,13 +2,12 @@
 using LightDiet.Recipe.Application.Exceptions;
 using LightDiet.Recipe.Application.UseCases.Category.Common.Dto;
 using LightDiet.Recipe.Application.UseCases.Category.UpdateCategory.Dto;
-using LightDiet.Recipe.Domain.Entity;
 using LightDiet.Recipe.Domain.Exceptions;
 using Moq;
 using UseCase = LightDiet.Recipe.Application.UseCases.Category.UpdateCategory;
+using Entities = LightDiet.Recipe.Domain.Entity;
 
-
-namespace LightDiet.Recipe.UnitTests.Application.UpdateCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.UpdateCategory;
 
 [Collection(nameof(UpdateCategoryTestFixture))]
 public class UpdateCategoryTest
@@ -27,13 +26,13 @@ public class UpdateCategoryTest
         parameters: 10,
         MemberType = typeof(UpdateCategoryTestDataGenerator)
     )]
-    public async Task UpdateCategoryOk(Category exampleCategory, UpdateCategoryInput input)
+    public async Task UpdateCategoryOk(Entities.Category exampleCategory, UpdateCategoryInput input)
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
         repositoryMock.Setup(x =>
-            x.Get(exampleCategory.Id, 
+            x.Get(exampleCategory.Id,
             It.IsAny<CancellationToken>()
         )).ReturnsAsync(exampleCategory);
 
@@ -61,7 +60,7 @@ public class UpdateCategoryTest
         ), Times.Once);
 
         unitOfWorkMock.Verify(x => x.Commit(
-            It.IsAny<CancellationToken>()    
+            It.IsAny<CancellationToken>()
         ), Times.Once);
     }
 
@@ -73,7 +72,7 @@ public class UpdateCategoryTest
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var input = _fixture.GetValidInput();
 
-        repositoryMock.Setup(x =>x.Get(
+        repositoryMock.Setup(x => x.Get(
             input.Id,
             It.IsAny<CancellationToken>()
         )).ThrowsAsync(new NotFoundException($"Category '{input.Id}' not found"));
@@ -103,14 +102,14 @@ public class UpdateCategoryTest
       parameters: 10,
       MemberType = typeof(UpdateCategoryTestDataGenerator)
   )]
-    public async Task UpdateCategoryWithoutProvidingIsActive(Category exampleCategory, UpdateCategoryInput exampleInput)
+    public async Task UpdateCategoryWithoutProvidingIsActive(Entities.Category exampleCategory, UpdateCategoryInput exampleInput)
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
         var input = new UpdateCategoryInput(
-            exampleInput.Id, 
-            exampleInput.Name, 
+            exampleInput.Id,
+            exampleInput.Name,
             exampleInput.Description
         );
 
@@ -154,7 +153,7 @@ public class UpdateCategoryTest
       parameters: 10,
       MemberType = typeof(UpdateCategoryTestDataGenerator)
   )]
-    public async Task UpdateCategoryOnlyName(Category exampleCategory, UpdateCategoryInput exampleInput)
+    public async Task UpdateCategoryOnlyName(Entities.Category exampleCategory, UpdateCategoryInput exampleInput)
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();

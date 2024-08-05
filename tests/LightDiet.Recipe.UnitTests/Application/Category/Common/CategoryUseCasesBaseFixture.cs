@@ -1,16 +1,14 @@
-﻿using LightDiet.Recipe.Domain.Entity;
+﻿using LightDiet.Recipe.Application.Interfaces;
 using LightDiet.Recipe.Domain.Repository.Interfaces;
 using LightDiet.Recipe.UnitTests.Common;
 using Moq;
-using Xunit;
+using Entities = LightDiet.Recipe.Domain.Entity;
 
-namespace LightDiet.Recipe.UnitTests.Application.GetCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.Common;
 
-public class GetCategoryTestFixture : BaseFixture
+public abstract class CategoryUseCasesBaseFixture
+    : BaseFixture
 {
-    public GetCategoryTestFixture()
-    : base() { }
-
     public string GetValidCategoryName()
     {
         var categoryName = "";
@@ -42,16 +40,20 @@ public class GetCategoryTestFixture : BaseFixture
         return categoryDescription;
     }
 
-    public Category GetValidCategory()
-        => new Category(GetValidCategoryName(), GetValidCategoryDescription());
+    public bool GetRandomBoolean()
+        => new Random().NextDouble() < 0.5;
+
+    public Entities.Category GetValidCategory()
+       => new(
+           GetValidCategoryName(),
+           GetValidCategoryDescription(),
+           GetRandomBoolean()
+       );
+
 
     public Mock<ICategoryRepository> GetRepositoryMock()
-      => new();
-}
+        => new();
 
-[CollectionDefinition(nameof(GetCategoryTestFixture))]
-public class GetCategoryTestFixtureCollection 
-    : ICollectionFixture<GetCategoryTestFixture>
-{
-  
+    public Mock<IUnitOfWork> GetUnitOfWorkMock()
+        => new();
 }

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using LightDiet.Recipe.Application.UseCases.Category.DeleteCategory.Dto;
 
-namespace LightDiet.Recipe.UnitTests.Application.DeleteCategory;
+namespace LightDiet.Recipe.UnitTests.Application.Category.DeleteCategory;
 
 [Collection(nameof(DeleteCategoryTestFixture))]
 public class DeleteCategoryInputValidatorTest

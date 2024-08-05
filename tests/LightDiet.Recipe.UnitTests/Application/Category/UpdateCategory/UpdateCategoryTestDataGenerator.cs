@@ -1,7 +1,4 @@
-﻿using LightDiet.Recipe.Application.UseCases.Category.UpdateCategory.Dto;
-using LightDiet.Recipe.UnitTests.Application.CreateCategory;
-
-namespace LightDiet.Recipe.UnitTests.Application.UpdateCategory;
+﻿namespace LightDiet.Recipe.UnitTests.Application.Category.UpdateCategory;
 
 public class UpdateCategoryTestDataGenerator
 {
