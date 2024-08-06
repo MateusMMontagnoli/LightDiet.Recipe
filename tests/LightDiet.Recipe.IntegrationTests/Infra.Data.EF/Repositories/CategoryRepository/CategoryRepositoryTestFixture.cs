@@ -1,4 +1,5 @@
 ﻿using LightDiet.Recipe.Domain.Entity;
+using LightDiet.Recipe.Infra.Data.EF;
 using LightDiet.Recipe.IntegrationTests.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,6 +57,8 @@ public class CategoryRepositoryTestFixture
             .UseInMemoryDatabase("integration-tests-db")
             .Options
         );
+
+        return dbContext;
     }
 }
 

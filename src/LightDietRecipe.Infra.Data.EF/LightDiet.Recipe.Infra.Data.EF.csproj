@@ -15,8 +15,4 @@
     <ProjectReference Include="..\LightDiet.Recipe.Domain\LightDiet.Recipe.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

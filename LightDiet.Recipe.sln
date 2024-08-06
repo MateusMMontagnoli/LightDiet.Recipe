@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.IntegrationTests", "tests\LightDiet.Recipe.IntegrationTests\LightDiet.Recipe.IntegrationTests.csproj", "{55BA6A07-0A82-480B-9A2A-1C7356FE20FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDietRecipe.Infra.Data.EF", "src\LightDietRecipe.Infra.Data.EF\LightDietRecipe.Infra.Data.EF.csproj", "{C9672161-960F-41AC-B321-6286BC5B6099}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.Infra.Data.EF", "src\LightDietRecipe.Infra.Data.EF\LightDiet.Recipe.Infra.Data.EF.csproj", "{C9672161-960F-41AC-B321-6286BC5B6099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

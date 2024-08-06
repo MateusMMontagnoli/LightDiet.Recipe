@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LightDietRecipe.Infra.Data.EF.Configuration;
+namespace LightDiet.Recipe.Infra.Data.EF.Configuration;
 
 internal class CategoryConfiguration
     : IEntityTypeConfiguration<Category>

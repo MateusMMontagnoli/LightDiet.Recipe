@@ -1,9 +1,9 @@
 ﻿using LightDiet.Recipe.Domain.Entity;
-using LightDietRecipe.Infra.Data.EF.Configuration;
+using LightDiet.Recipe.Infra.Data.EF.Configuration;
 using Microsoft.EntityFrameworkCore;
 //using System.Reflection;
 
-namespace LightDietRecipe.Infra.Data.EF;
+namespace LightDiet.Recipe.Infra.Data.EF;
 
 public class LightDietRecipeDbContext
     : DbContext
@@ -12,7 +12,7 @@ public class LightDietRecipeDbContext
 
     public LightDietRecipeDbContext(
         DbContextOptions<LightDietRecipeDbContext> options
-    ) 
+    )
         : base(options)
     { }
 
