@@ -50,6 +50,12 @@ public class CategoryRepositoryTestFixture
            GetRandomBoolean()
        );
 
+    public List<Category> GetValidCategoriesList(int length = 10)
+    => Enumerable
+        .Range(1, length)
+        .Select(_ => GetValidCategory())
+        .ToList();
+
     public LightDietRecipeDbContext CreateDbContext()
     {
         var dbContext = new LightDietRecipeDbContext(
