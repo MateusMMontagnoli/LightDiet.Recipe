@@ -26,8 +26,8 @@ public class CategoryRepository
 
     public async Task<Category> Get(Guid id, CancellationToken cancellationToken)
     {
-        var category = await _categories.FindAsync(
-            new object[] { id },
+        var category = await _categories.AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id,
             cancellationToken
         );
 
