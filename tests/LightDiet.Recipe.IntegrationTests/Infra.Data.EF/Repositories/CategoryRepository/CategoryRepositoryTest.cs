@@ -27,7 +27,9 @@ public class CategoryRepositoryTest
         await categoryRepository.Insert(exampleCategory, CancellationToken.None);
         await dbContext.SaveChangesAsync(CancellationToken.None);
 
-        var dbCategory = await dbContext.Categories.FindAsync(exampleCategory.Id);
+        LightDietRecipeDbContext newDbContext = _fixture.CreateDbContext();
+
+        var dbCategory = await newDbContext.Categories.FindAsync(exampleCategory.Id);
 
         dbCategory.Should().NotBeNull();
         dbCategory!.Name.Should().Be(exampleCategory.Name);
@@ -50,7 +52,9 @@ public class CategoryRepositoryTest
         await dbContext.AddRangeAsync(exampleCategoriesList);
         _ = await dbContext.SaveChangesAsync(CancellationToken.None);
 
-        var categoryRepository = new Repository.CategoryRepository(dbContext);
+        LightDietRecipeDbContext newDbContext = _fixture.CreateDbContext();
+
+        var categoryRepository = new Repository.CategoryRepository(newDbContext);
 
         var dbCategory = await categoryRepository.Get(exampleCategory.Id, CancellationToken.None);
 
@@ -71,11 +75,13 @@ public class CategoryRepositoryTest
         var exampleId = Guid.NewGuid();
 
         var exampleCategoriesList = _fixture.GetValidCategoriesList(15);
-        
+
         await dbContext.AddRangeAsync(exampleCategoriesList);
         _ = await dbContext.SaveChangesAsync(CancellationToken.None);
 
-        var categoryRepository = new Repository.CategoryRepository(dbContext);
+        LightDietRecipeDbContext newDbContext = _fixture.CreateDbContext();
+
+        var categoryRepository = new Repository.CategoryRepository(newDbContext);
 
         var action = async () => await categoryRepository.Get(
             exampleId,
@@ -104,9 +110,11 @@ public class CategoryRepositoryTest
         exampleCategory.Update(newCategoryValues.Name, newCategoryValues.Description);
         await categoryRepository.Update(exampleCategory, CancellationToken.None);
 
-        var dbCategory = await dbContext.Categories.FindAsync(exampleCategory.Id);
-
         await dbContext.SaveChangesAsync(CancellationToken.None);
+        
+        LightDietRecipeDbContext newDbContext = _fixture.CreateDbContext();
+
+        var dbCategory = await newDbContext.Categories.FindAsync(exampleCategory.Id);
 
         dbCategory.Should().NotBeNull();
         dbCategory!.Name.Should().Be(exampleCategory.Name);
