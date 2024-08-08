@@ -41,15 +41,12 @@ public class CategoryRepository
         throw new NotImplementedException();
     }
 
-    
-
     public Task<SearchOutput<Category>> Search(SearchInput input, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
     public Task Update(Category aggregate, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+        => Task.FromResult(_categories.Update(aggregate));
+    
 }

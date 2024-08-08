@@ -31,6 +31,7 @@ public class CategoryRepositoryTest
 
         dbCategory.Should().NotBeNull();
         dbCategory!.Name.Should().Be(exampleCategory.Name);
+        dbCategory.Id.Should().Be(exampleCategory.Id);
         dbCategory.Description.Should().NotBeNull();
         dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
         dbCategory.CreatedAt.Should().Be(exampleCategory.CreatedAt);
@@ -84,5 +85,34 @@ public class CategoryRepositoryTest
             .Should()
             .ThrowAsync<NotFoundException>()
             .WithMessage($"Category '{exampleId}' not found");
+    }
+
+    [Fact(DisplayName = nameof(Update))]
+    [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
+    public async Task Update()
+    {
+        LightDietRecipeDbContext dbContext = _fixture.CreateDbContext();
+
+        var exampleCategory = _fixture.GetValidCategory();
+        var categoryRepository = new Repository.CategoryRepository(dbContext);
+        var newCategoryValues = _fixture.GetValidCategory();
+
+        await categoryRepository.Insert(exampleCategory, CancellationToken.None);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+
+
+        exampleCategory.Update(newCategoryValues.Name, newCategoryValues.Description);
+        await categoryRepository.Update(exampleCategory, CancellationToken.None);
+
+        var dbCategory = await dbContext.Categories.FindAsync(exampleCategory.Id);
+
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+
+        dbCategory.Should().NotBeNull();
+        dbCategory!.Name.Should().Be(exampleCategory.Name);
+        dbCategory.Id.Should().Be(exampleCategory.Id);
+        dbCategory.Description.Should().NotBeNull();
+        dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
+        dbCategory.CreatedAt.Should().Be(exampleCategory.CreatedAt);
     }
 }
