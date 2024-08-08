@@ -1,4 +1,5 @@
-﻿using LightDiet.Recipe.Domain.Entity;
+﻿using LightDiet.Recipe.Application.Exceptions;
+using LightDiet.Recipe.Domain.Entity;
 using LightDiet.Recipe.Domain.Repository.Interfaces;
 using LightDiet.Recipe.Domain.SeedWork.SearchableRepository;
 using Microsoft.EntityFrameworkCore;
@@ -24,10 +25,16 @@ public class CategoryRepository
         => await _categories.AddAsync(aggregate, cancellationToken);
 
     public async Task<Category> Get(Guid id, CancellationToken cancellationToken)
-        => await _categories.FindAsync(
+    {
+        var category = await _categories.FindAsync(
             new object[] { id },
             cancellationToken
         );
+
+        NotFoundException.ThrowIfNull(category, $"Category '{id}' not found");
+
+        return category!;
+    }
 
     public Task Delete(Category aggregate, CancellationToken cancellationToken)
     {

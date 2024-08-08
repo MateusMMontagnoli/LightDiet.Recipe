@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using LightDiet.Recipe.Application.Exceptions;
 using LightDiet.Recipe.Infra.Data.EF;
 using Repository = LightDiet.Recipe.Infra.Data.EF.Repositories;
 
@@ -58,5 +59,30 @@ public class CategoryRepositoryTest
         dbCategory.Description.Should().NotBeNull();
         dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
         dbCategory.CreatedAt.Should().Be(exampleCategory.CreatedAt);
+    }
+
+    [Fact(DisplayName = nameof(GetThrowExceptionWhenNotFound))]
+    [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
+    public async Task GetThrowExceptionWhenNotFound()
+    {
+        LightDietRecipeDbContext dbContext = _fixture.CreateDbContext();
+
+        var exampleId = Guid.NewGuid();
+
+        var exampleCategoriesList = _fixture.GetValidCategoriesList(15);
+        
+        await dbContext.AddRangeAsync(exampleCategoriesList);
+        _ = await dbContext.SaveChangesAsync(CancellationToken.None);
+
+        var categoryRepository = new Repository.CategoryRepository(dbContext);
+
+        var action = async () => await categoryRepository.Get(
+            exampleId,
+            CancellationToken.None);
+
+        await action
+            .Should()
+            .ThrowAsync<NotFoundException>()
+            .WithMessage($"Category '{exampleId}' not found");
     }
 }
