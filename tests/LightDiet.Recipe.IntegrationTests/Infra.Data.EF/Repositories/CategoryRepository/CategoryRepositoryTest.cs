@@ -123,4 +123,26 @@ public class CategoryRepositoryTest
         dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
         dbCategory.CreatedAt.Should().Be(exampleCategory.CreatedAt);
     }
+
+    [Fact(DisplayName = nameof(Delete))]
+    [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
+    public async Task Delete()
+    {
+        LightDietRecipeDbContext dbContext = _fixture.CreateDbContext();
+
+        var exampleCategory = _fixture.GetValidCategory();
+        var categoryRepository = new Repository.CategoryRepository(dbContext);
+
+        await categoryRepository.Insert(exampleCategory, CancellationToken.None);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+
+        await categoryRepository.Delete(exampleCategory, CancellationToken.None);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+
+        LightDietRecipeDbContext newDbContext = _fixture.CreateDbContext();
+
+        var dbCategory = await newDbContext.Categories.FindAsync(exampleCategory.Id);
+
+        dbCategory.Should().BeNull();
+    }
 }

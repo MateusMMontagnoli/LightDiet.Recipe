@@ -37,9 +37,7 @@ public class CategoryRepository
     }
 
     public Task Delete(Category aggregate, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+        => Task.FromResult(_categories.Remove(aggregate));
 
     public Task<SearchOutput<Category>> Search(SearchInput input, CancellationToken cancellationToken)
     {
