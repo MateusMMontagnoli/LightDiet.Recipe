@@ -3,6 +3,7 @@ using LightDiet.Recipe.Domain.SeedWork.SearchableRepository;
 using LightDiet.Recipe.Infra.Data.EF;
 using LightDiet.Recipe.IntegrationTests.Common;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace LightDiet.Recipe.IntegrationTests.Infra.Data.EF.Repositories.CategoryRepository;
 
@@ -71,31 +72,21 @@ public class CategoryRepositoryTestFixture
     {
         var categoriesOrderedList = new List<Category>(categoriesOriginalList);
 
-        categoriesOrderedList = (orderBy, order) switch
+        categoriesOrderedList = (orderBy.ToLower(), order) switch
         {
             ("name", SearchOrder.Desc) => [.. categoriesOrderedList.OrderByDescending(x => x.Name)],
             ("name", SearchOrder.Asc) => [.. categoriesOrderedList.OrderBy(x => x.Name)],
+            ("id", SearchOrder.Asc) => [.. categoriesOrderedList.OrderBy(x => x.Id)],
+            ("id", SearchOrder.Desc) => [.. categoriesOrderedList.OrderByDescending(x => x.Id)],
+            ("createdat", SearchOrder.Asc) => [.. categoriesOrderedList.OrderBy(x => x.CreatedAt)],
+            ("createdat", SearchOrder.Desc) => [.. categoriesOrderedList.OrderByDescending(x => x.CreatedAt)],
             _ => [.. categoriesOrderedList.OrderBy(x => x.Name)]
         };
 
-        return categoriesOrderedList.ToList();
+        return [.. categoriesOrderedList];
     }
 
-    public LightDietRecipeDbContext CreateDbContext(bool preserveData = false)
-    {
-        var dbContext = new LightDietRecipeDbContext(
-            new DbContextOptionsBuilder<LightDietRecipeDbContext>()
-            .UseInMemoryDatabase("integration-tests-db")
-            .Options
-        );
-
-        if (!preserveData)
-        {
-            dbContext.Database.EnsureDeleted();
-        }
-
-        return dbContext;
-    }
+   
 }
 
 [CollectionDefinition(nameof(CategoryRepositoryTestFixture))]

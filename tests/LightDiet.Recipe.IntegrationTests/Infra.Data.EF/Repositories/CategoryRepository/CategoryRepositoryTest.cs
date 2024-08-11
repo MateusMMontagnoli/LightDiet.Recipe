@@ -318,6 +318,11 @@ public class CategoryRepositoryTest
     [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
     [InlineData("name", SearchOrder.Asc)]
     [InlineData("name", SearchOrder.Desc)]
+    [InlineData("id", SearchOrder.Asc)]
+    [InlineData("id", SearchOrder.Desc)]
+    [InlineData("createdAt", SearchOrder.Asc)]
+    [InlineData("createdAt", SearchOrder.Desc)]
+    [InlineData("", SearchOrder.Asc)]
     public async Task SearchOrderedPaginatedList(
         string orderBy,
         SearchOrder order
