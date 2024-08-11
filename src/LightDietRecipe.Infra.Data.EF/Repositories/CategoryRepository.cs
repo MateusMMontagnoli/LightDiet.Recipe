@@ -26,6 +26,8 @@ public class CategoryRepository
 
     public async Task<Category> Get(Guid id, CancellationToken cancellationToken)
     {
+        var total = await _categories.CountAsync();
+
         var category = await _categories.AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == id,
             cancellationToken
@@ -39,9 +41,47 @@ public class CategoryRepository
     public Task Delete(Category aggregate, CancellationToken cancellationToken)
         => Task.FromResult(_categories.Remove(aggregate));
 
-    public Task<SearchOutput<Category>> Search(SearchInput input, CancellationToken cancellationToken)
+    public async Task<SearchOutput<Category>> Search(SearchInput input, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+
+        var toSkip = (input.Page - 1) * input.PerPage;
+        var query = _categories.AsNoTracking();
+        query = AddOrderToQuery(query, input.OrderBy, input.Order);
+
+        if (!string.IsNullOrWhiteSpace(input.Search))
+        {
+            query = query.Where(x =>
+                x.Name.Contains(input.Search)
+            );
+        }
+
+        var total = await query.CountAsync(cancellationToken);
+
+        if (total == 0)
+        {
+            return new(input.Page, input.PerPage, total, []);
+        }
+
+        var items = await query
+            .Skip(toSkip)
+            .Take(input.PerPage)
+            .ToListAsync(cancellationToken);
+
+        return new(input.Page, input.PerPage, total, items);
+    }
+
+    private IQueryable<Category> AddOrderToQuery(
+        IQueryable<Category> query,
+        string propToOrderBy,
+        SearchOrder order
+    )
+    {
+        return (propToOrderBy.ToLower(), order) switch
+        {
+            ("name", SearchOrder.Asc) => query.OrderBy(x => x.Name),
+            ("name", SearchOrder.Desc) => query.OrderByDescending(x => x.Name),
+            _ => query.OrderBy(x => x.Name)
+        };
     }
 
     public Task Update(Category aggregate, CancellationToken cancellationToken)
