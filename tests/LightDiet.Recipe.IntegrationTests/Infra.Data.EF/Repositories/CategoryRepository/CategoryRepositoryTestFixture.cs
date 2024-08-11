@@ -1,9 +1,6 @@
 ﻿using LightDiet.Recipe.Domain.Entity;
 using LightDiet.Recipe.Domain.SeedWork.SearchableRepository;
-using LightDiet.Recipe.Infra.Data.EF;
 using LightDiet.Recipe.IntegrationTests.Common;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace LightDiet.Recipe.IntegrationTests.Infra.Data.EF.Repositories.CategoryRepository;
 
