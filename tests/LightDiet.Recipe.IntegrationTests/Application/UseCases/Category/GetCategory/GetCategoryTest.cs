@@ -35,7 +35,7 @@ public class GetCategoryTest(GetCategoryTestFixture fixture)
     }
 
     [Fact(DisplayName = nameof(NotFoundExceptionWhenCategoryDoesntExist))]
-    [Trait("Application", "GetCategory - Use Cases")]
+    [Trait("Integration/Application", "GetCategory - Use Cases")]
     public async Task NotFoundExceptionWhenCategoryDoesntExist()
     {
         var dbContext = _fixture.CreateDbContext();
