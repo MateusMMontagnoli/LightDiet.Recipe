@@ -150,8 +150,8 @@ public class CreateCategoryTest(CreateCategoryTestFixture fixture)
 
         var newDbContext = _fixture.CreateDbContext(true);
 
-        var quantityCategoriesInDatabase = await newDbContext.Categories.CountAsync();
+        var quantityOfCategoriesInDatabase = await newDbContext.Categories.CountAsync();
 
-        quantityCategoriesInDatabase.Should().Be(0);
+        quantityOfCategoriesInDatabase.Should().Be(0);
     }
 }
