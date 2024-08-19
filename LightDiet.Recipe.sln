@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.Application", "src\LightDiet.Recipe.Application\LightDiet.Recipe.Application.csproj", "{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.IntegrationTests", "tests\LightDiet.Recipe.IntegrationTests\LightDiet.Recipe.IntegrationTests.csproj", "{55BA6A07-0A82-480B-9A2A-1C7356FE20FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.IntegrationTests", "tests\LightDiet.Recipe.IntegrationTests\LightDiet.Recipe.IntegrationTests.csproj", "{55BA6A07-0A82-480B-9A2A-1C7356FE20FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.Infra.Data.EF", "src\LightDietRecipe.Infra.Data.EF\LightDiet.Recipe.Infra.Data.EF.csproj", "{C9672161-960F-41AC-B321-6286BC5B6099}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.Infra.Data.EF", "src\LightDietRecipe.Infra.Data.EF\LightDiet.Recipe.Infra.Data.EF.csproj", "{C9672161-960F-41AC-B321-6286BC5B6099}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.EndToEndTests", "tests\LightDiet.Recipe.EndToEndTests\LightDiet.Recipe.EndToEndTests.csproj", "{68A90480-C6D1-46BA-8D21-76EE8FE14798}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{C9672161-960F-41AC-B321-6286BC5B6099}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9672161-960F-41AC-B321-6286BC5B6099}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9672161-960F-41AC-B321-6286BC5B6099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{CDC6B6F8-FB80-4B3E-B4B0-2245DBD5C7C8} = {26789FFB-53E7-4C2B-AD55-0D6F4607B72B}
 		{55BA6A07-0A82-480B-9A2A-1C7356FE20FB} = {7B94F3F7-A807-4DD6-B80B-23C0994B6960}
 		{C9672161-960F-41AC-B321-6286BC5B6099} = {26789FFB-53E7-4C2B-AD55-0D6F4607B72B}
+		{68A90480-C6D1-46BA-8D21-76EE8FE14798} = {7B94F3F7-A807-4DD6-B80B-23C0994B6960}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {698B0E53-FABF-4877-AC43-009861C7E969}
