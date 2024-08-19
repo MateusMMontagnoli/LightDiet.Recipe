@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using LightDiet.Recipe.Application.UseCases.Category.Common.Dto;
+using System.Net;
 using Entities = LightDiet.Recipe.Domain.Entity;
 
 namespace LightDiet.Recipe.EndToEndTests.Api.Category.CreateCategory;
@@ -15,15 +16,18 @@ public class CreateCategoryApiTest(CreateCategoryApiTestFixture fixture)
     {
         var input = _fixture.GetValidInput();
 
-        CategoryModelOutput output = await _fixture
+        var (response, output) = await _fixture
             .ApiClient
             .Post<CategoryModelOutput>(
                 "/categories",
                 input
             );
 
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be(HttpStatusCode.Created);
+
         output.Should().NotBeNull();
-        output.Name.Should().Be(input.Name);
+        output!.Name.Should().Be(input.Name);
         output.Description.Should().Be(input.Description);
         output.IsActive.Should().Be(input.IsActive);
         output.Id.Should().NotBeEmpty();

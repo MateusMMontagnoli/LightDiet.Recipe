@@ -21,4 +21,6 @@ public class BaseFixture
 
         return dbContext;
     }
+
+    public ApiClient ApiClient { get; set; }
 }
