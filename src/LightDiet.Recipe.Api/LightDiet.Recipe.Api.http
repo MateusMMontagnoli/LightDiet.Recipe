@@ -1,0 +1,6 @@
+@LightDiet.Recipe.Api_HostAddress = http://localhost:5236
+
+GET {{LightDiet.Recipe.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightDiet.Recipe.Infra.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.EndToEndTests", "tests\LightDiet.Recipe.EndToEndTests\LightDiet.Recipe.EndToEndTests.csproj", "{68A90480-C6D1-46BA-8D21-76EE8FE14798}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightDiet.Recipe.Api", "src\LightDiet.Recipe.Api\LightDiet.Recipe.Api.csproj", "{EBB9009F-C627-4DB9-9D13-BC6D78FDE079}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68A90480-C6D1-46BA-8D21-76EE8FE14798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBB9009F-C627-4DB9-9D13-BC6D78FDE079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBB9009F-C627-4DB9-9D13-BC6D78FDE079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBB9009F-C627-4DB9-9D13-BC6D78FDE079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBB9009F-C627-4DB9-9D13-BC6D78FDE079}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{55BA6A07-0A82-480B-9A2A-1C7356FE20FB} = {7B94F3F7-A807-4DD6-B80B-23C0994B6960}
 		{C9672161-960F-41AC-B321-6286BC5B6099} = {26789FFB-53E7-4C2B-AD55-0D6F4607B72B}
 		{68A90480-C6D1-46BA-8D21-76EE8FE14798} = {7B94F3F7-A807-4DD6-B80B-23C0994B6960}
+		{EBB9009F-C627-4DB9-9D13-BC6D78FDE079} = {26789FFB-53E7-4C2B-AD55-0D6F4607B72B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {698B0E53-FABF-4877-AC43-009861C7E969}

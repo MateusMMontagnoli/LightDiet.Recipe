@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\LightDiet.Recipe.Api\LightDiet.Recipe.Api.csproj" />
     <ProjectReference Include="..\..\src\LightDietRecipe.Infra.Data.EF\LightDiet.Recipe.Infra.Data.EF.csproj" />
   </ItemGroup>
 

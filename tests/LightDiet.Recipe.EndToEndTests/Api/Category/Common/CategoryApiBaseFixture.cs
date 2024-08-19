@@ -5,6 +5,13 @@ namespace LightDiet.Recipe.EndToEndTests.Api.Category.Common;
 public class CategoryApiBaseFixture 
     : BaseFixture
 {
+    public CategoryPersistence Persistence;
+
+    public CategoryApiBaseFixture()
+        : base() => Persistence = new CategoryPersistence(
+            CreateDbContext()
+        );
+
     public string GetValidCategoryName()
     {
         var categoryName = "";

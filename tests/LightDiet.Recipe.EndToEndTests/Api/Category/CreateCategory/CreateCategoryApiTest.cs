@@ -33,11 +33,11 @@ public class CreateCategoryApiTest(CreateCategoryApiTestFixture fixture)
         output.Id.Should().NotBeEmpty();
         output.CreatedAt.Should().NotBeSameDateAs(default);
 
-        Entities.Category dbCategory = await _fixture.Persistence
+        Entities.Category? dbCategory = await _fixture.Persistence
             .GetById(output.Id);
 
         dbCategory.Should().NotBeNull();
-        dbCategory.Name.Should().Be(input.Name);
+        dbCategory!.Name.Should().Be(input.Name);
         dbCategory.Description.Should().Be(input.Description);
         dbCategory.IsActive.Should().Be(input.IsActive);
         dbCategory.Id.Should().NotBeEmpty();
