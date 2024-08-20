@@ -6,7 +6,7 @@ namespace LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
 
 public record CreateCategoryInput : IRequest<CategoryModelOutput>
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     public string Description { get; set; }
 
