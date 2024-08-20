@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using LightDiet.Recipe.Application.UseCases.Category.Common.Dto;
+using LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Entities = LightDiet.Recipe.Domain.Entity;
 
@@ -42,6 +44,34 @@ public class CreateCategoryApiTest(CreateCategoryApiTestFixture fixture)
         dbCategory.IsActive.Should().Be(input.IsActive);
         dbCategory.Id.Should().NotBeEmpty();
         dbCategory.CreatedAt.Should().NotBeSameDateAs(default);
+    }
 
+    [Theory(DisplayName = nameof(ThrowErrorWhenCantInstantiateAggregate))]
+    [Trait("EndToEnd/Api", "Category - Endpoints")]
+    [MemberData(
+        nameof(CreateCategoryApiTestDataGenerator.GetInvalidInputs),
+        parameters: 6,
+        MemberType = typeof(CreateCategoryApiTestDataGenerator)
+    )]
+    public async Task ThrowErrorWhenCantInstantiateAggregate(
+        CreateCategoryInput input,
+        string expectedDetail
+    )
+    {
+        var (response, output) = await _fixture
+            .ApiClient
+            .Post<ProblemDetails>(
+                "/categories",
+                input
+            );
+
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+
+        output.Should().NotBeNull();
+        output!.Title.Should().Be("One or more validation errors ocurred");
+        output.Type.Should().Be("UnprocessableEntity");
+        output.Status.Should().Be((int)HttpStatusCode.UnprocessableEntity);
+        output.Detail.Should().Be(expectedDetail);
     }
 }

@@ -29,7 +29,7 @@ public class CustomWebApplicationFactory<TStartup>
 
             services.AddDbContext<LightDietRecipeDbContext>(options =>
             {
-                options.UseInMemoryDatabase("end2end-test-db");
+                options.UseInMemoryDatabase("end2end-tests-db");
             });
 
         });
