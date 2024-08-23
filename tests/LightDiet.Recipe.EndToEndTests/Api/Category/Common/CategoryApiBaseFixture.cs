@@ -1,4 +1,4 @@
-﻿using LightDiet.Recipe.Application.UseCases.Category.CreateCategory.Dto;
+﻿using Entities = LightDiet.Recipe.Domain.Entity;
 using LightDiet.Recipe.EndToEndTests.Common;
 
 namespace LightDiet.Recipe.EndToEndTests.Api.Category.Common;
@@ -99,4 +99,11 @@ public class CategoryApiBaseFixture
         return invalidDescription;
     }
 
+    public Entities.Category GetExampleCategory()
+        => new(GetValidCategoryName(), GetValidCategoryDescription(), GetRandomBoolean());
+
+    public List<Entities.Category> GetExampleCategories(int numberOfCategoriesToCreate)
+        => Enumerable.Range(1, numberOfCategoriesToCreate).Select(_ => 
+            GetExampleCategory()
+        ).ToList();
 }

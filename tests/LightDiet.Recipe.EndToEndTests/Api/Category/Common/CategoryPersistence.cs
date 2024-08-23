@@ -15,4 +15,11 @@ public class CategoryPersistence(LightDietRecipeDbContext context)
         .FirstOrDefaultAsync(x => 
             x.Id == id
         );
+
+    public async Task InsertList(List<Entities.Category> categories)
+    {
+        await _context.Categories.AddRangeAsync(categories);
+
+        await _context.SaveChangesAsync();
+    }
 }

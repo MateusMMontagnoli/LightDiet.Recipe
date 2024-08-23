@@ -13,7 +13,7 @@ public class CreateCategoryApiTest(CreateCategoryApiTestFixture fixture)
     private readonly CreateCategoryApiTestFixture _fixture = fixture;
 
     [Fact(DisplayName = nameof(CreateCategoryOk))]
-    [Trait("EndToEnd/Api", "Category - Endpoints")]
+    [Trait("EndToEnd/Api", "Category/Create - Endpoints")]
     public async Task CreateCategoryOk()
     {
         var input = _fixture.GetValidInput();
@@ -47,7 +47,7 @@ public class CreateCategoryApiTest(CreateCategoryApiTestFixture fixture)
     }
 
     [Theory(DisplayName = nameof(ThrowErrorWhenCantInstantiateAggregate))]
-    [Trait("EndToEnd/Api", "Category - Endpoints")]
+    [Trait("EndToEnd/Api", "Category/Create - Endpoints")]
     [MemberData(
         nameof(CreateCategoryApiTestDataGenerator.GetInvalidInputs),
         parameters: 6,
