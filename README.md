@@ -11,5 +11,5 @@ Another feature of the system is the nutritionist can make meal plans and share 
 - Microservices
 - Clean Architecture
 
-## Others repositories for look 
+## Others repositories to look 
 - https://github.com/NettoVieira/LigthLife
