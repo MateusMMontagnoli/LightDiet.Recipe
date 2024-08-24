@@ -63,6 +63,29 @@ public class ApiClient(HttpClient httpClient)
         return (response, deserializedOutput);
     }
 
+    public async Task<(HttpResponseMessage?, TOutput?)> Delete<TOutput>(
+        string route
+    )
+        where TOutput : class
+    {
+        var response = await _httpClient.DeleteAsync(route);
+        var outputString = await response.Content.ReadAsStringAsync();
+
+        var validOutputString = !string.IsNullOrWhiteSpace(outputString);
+
+        TOutput? deserializedOutput = null;
+
+        if (validOutputString)
+        {
+            deserializedOutput = JsonSerializer.Deserialize<TOutput>(
+                outputString,
+                jsonSerializerOptions
+            );
+        }
+
+        return (response, deserializedOutput);
+    }
+
     private StringContent CreateJsonStringContent(string serializedInput)
     {
         return new StringContent(
