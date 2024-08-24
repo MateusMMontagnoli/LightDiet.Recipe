@@ -1,4 +1,5 @@
-﻿using LightDiet.Recipe.Domain.Exceptions;
+﻿using LightDiet.Recipe.Application.Exceptions;
+using LightDiet.Recipe.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -27,6 +28,15 @@ public class ApiGlobalExceptionsFilter(IHostEnvironment env) : IExceptionFilter
             details.Status = StatusCodes.Status422UnprocessableEntity;
             details.Type = "UnprocessableEntity";
             details.Detail = returnedException!.Message;
+        }
+        else if (exception is NotFoundException)
+        {
+            var returnedException = exception as NotFoundException;
+
+            details.Title = "Not Found";
+            details.Status = StatusCodes.Status404NotFound;
+            details.Type = "NotFound";
+            details.Detail = exception!.Message;
         }
         else
         {
